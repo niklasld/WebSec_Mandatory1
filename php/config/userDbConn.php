@@ -3,7 +3,7 @@
     class UserDbConn {
         //config data
         private $host = "localhost";
-        private $db_name = "websecdatabasename";
+        private $db_name = "socialnetworkdb";
         private $username = "root";
         private $password = "";
 
