@@ -8,11 +8,11 @@
         //check if user is validated.
         $validate = checkUser($user, $pwd);
 
-        if($validate == true) {
+        if($validate == "Success") {
             echo "login Success!!!!";
         }
         else {
-            echo "login failed!!!!";
+            echo $validate;
         }
 
     }
@@ -40,7 +40,7 @@
                 //set sessions data and return true
                 $_SESSION['logInEU'] = true;
                 $_SESSION['userId'] = $user['EUId'];
-                return true;
+                return "Success";
             } 
             //update database with a failed login (set attempts +1, and update last login)
             else {
@@ -49,11 +49,11 @@
 
                 //call update failed login function to update data.
                 updateFailedLogin($user, $currentTime);
-                return false;
+                return "Login Failed...";
             }
         }
         else {
-            return false;
+            return "Account have been locked...";
         }
     }
 
