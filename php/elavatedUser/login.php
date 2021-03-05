@@ -14,7 +14,7 @@
         $pwd = $_POST['password'];
 
         //call test()
-        test();
+        test($email, $pwd);
     }
 
 ?>

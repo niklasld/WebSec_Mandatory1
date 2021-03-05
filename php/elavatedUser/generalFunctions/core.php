@@ -1,6 +1,4 @@
 <?php
-    //start session
-    session_start();
 
     function test($email, $pwd) {
 
@@ -41,7 +39,7 @@
             if(password_verify($pwd, $user['Password'])) {
                 //set sessions data and return true
                 $_SESSION['logInEU'] = true;
-                $_SESSION['userId'] = $user['userId'];
+                $_SESSION['userId'] = $user['EUId'];
                 return true;
             } 
             //update database with a failed login (set attempts +1, and update last login)
@@ -61,10 +59,10 @@
 
     function updateFailedLogin($user, $currentTime) {
         //include dbconnection from eu souce.
-        include_once('php/config/euDbConn.php');
+        include_once('../../php/config/euDbConn.php');
 
         //create database conn
-        $database = new Database();
+        $database = new EuDbConn();
 
         //connect
         $connection = $database->getConnection();
@@ -73,7 +71,7 @@
             UPDATE
                 elavatedusers
             SET 
-                LastLogin=:lastLogin,
+                LastLogin=:LastLogin,
                 LoginAttempts=:LoginAttempts
             WHERE
                 Email=:Email
@@ -83,6 +81,8 @@
 
         $attempts = $user['LoginAttempts']+1;
         $email = $user['Email'];
+
+        echo $attempts." ".$currentTime." ".$email;
 
         //bind paramiters
         $stmt->bindParam(':LastLogin', $currentTime);
@@ -94,10 +94,10 @@
 
     function findUserByUserName($email) {
         //include dbconnection from eu souce.
-        include_once('php/config/euDbConn.php');
+        include_once('../../php/config/euDbConn.php');
 
         //create database conn
-        $database = new Database();
+        $database = new EuDbConn();
 
         //connect
         $connection = $database->getConnection();
@@ -115,7 +115,6 @@
 
         //sanatize
         $email = htmlspecialchars(strip_tags($email));
-        $pwd = htmlspecialchars(strip_tags($pwd));
 
         //bind stuff
         $stmt->bindParam(':Email', $email);
