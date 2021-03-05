@@ -7,7 +7,7 @@
 
 
         //gets login functions
-        include_once('php/elevatedUser/generalFunctions/core.php');
+        include_once('generalFunctions/core.php');
 
         //set post variables
         $email = $_POST['username'];
