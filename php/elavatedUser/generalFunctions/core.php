@@ -10,6 +10,7 @@
 
         if($validate == "Success") {
             echo "login Success!!!!";
+            header("Location: welcome.php"); 
         }
         else {
             echo $validate;
@@ -40,6 +41,7 @@
                 //set sessions data and return true
                 $_SESSION['logInEU'] = true;
                 $_SESSION['userId'] = $user['EUId'];
+                $_SESSION['FirstName'] = $user['FirstName'];
                 return "Success";
             } 
             //update database with a failed login (set attempts +1, and update last login)
