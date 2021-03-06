@@ -6,8 +6,16 @@
     // }
 
     if(isset($_POST['header']) && isset($_POST['content'])) {
-        echo $_POST['header'];
-        echo $_POST['content'];
+        include_once('generalFunctions/postToWall.php');
+
+        $success = createWallPost($_POST);
+
+        if($success == true) {
+            header("Location: wallView.php"); 
+        }
+        else {
+            echo "an error happened...";
+        }
     }
 ?>
 

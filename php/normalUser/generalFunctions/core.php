@@ -33,15 +33,17 @@
             //echo '<br>'.$value['WallPostId'].'<br>';
             echo '<h1>'.$value['Header'].'</h1>';
             echo 'Date created: '.$value['Timestamp'].' By: <i>'.$value['FirstName'].' '.$value['LastName'].'</i><br>';
-            echo '<img src="'.$value['FileLink'].'" width="300" height="200"></img><br>';
+            if($value['FileLink'] != "") {
+                echo '<img src="'.$value['FileLink'].'" width="300" height="200"></img><br>';
+            }
+            
             echo '<p>'.$value['Content'].'</p><br>';
             echo '<button name="Reply" data-id="'.$value['WallPostId'].'">Reply</button><br><br>';
             echo '<b>Replies:</b><br>';
             $replies = getRepliesFromId($value['WallPostId']);
-
             foreach($replies as $reply) {
                 echo '<p>'.$reply['Reply'].'</p>';
-                echo $reply['Timestamp'].' <i>'.$reply['FirstName'].' '.$reply['LastName'].'<br>';
+                echo $reply['Timestamp'].' <i>'.$reply['FirstName'].' '.$reply['LastName'].'</i><br>';
             }
         }
     }
