@@ -31,10 +31,9 @@
         if(isset($postData['imgLink'])){
             $postData['imgLink'] = htmlspecialchars(strip_tags($postData['imgLink']));
         }
-        //temp solution till user login is created
-        $postData['createdBy'] = 1;
 
-        var_dump($postData);
+        $postData['createdBy'] = $_SESSION['userId'];
+
         //bind data
         $stmt->bindParam(':Header', $postData['header']);
         $stmt->bindParam(':Content', $postData['content']);

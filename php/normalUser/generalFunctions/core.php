@@ -33,12 +33,14 @@
         foreach($result as $value) {
             //echo '<br>'.$value['WallPostId'].'<br>';
             echo '<h1>'.$value['Header'].'</h1>';
-            echo 'Date created: '.$value['Timestamp'].' By: <i>'.$value['FirstName'].' '.$value['LastName'].'</i><br>';
-            if($value['FileLink'] != "") {
-                echo '<img src="'.$value['FileLink'].'" width="300" height="200"></img><br>';
+            echo 'Date created: '.$value['Timestamp'].' By: <i>'.$value['FirstName'].' '.$value['LastName'].'</i>';
+            if($value['CreatedBy'] == $_SESSION['userId']) {
+                echo ' <button class="deletePost" data-id="'.$value['WallPostId'].'">Delete Post</button>';
             }
-            
-            echo '<p>'.$value['Content'].'</p><br>';
+            if($value['FileLink'] != "") {
+                echo '<br><img src="'.$value['FileLink'].'" width="300" height="200"></img>';
+            }
+            echo '<br><p>'.$value['Content'].'</p><br>';
             echo '<button name="Reply" data-id="'.$value['WallPostId'].'">Reply</button><br><br>';
             echo '<b>Replies:</b><br>';
             $replies = getRepliesFromId($value['WallPostId']);

@@ -1,6 +1,6 @@
 <?php
 
-    function test($email, $pwd) {
+    function checkLogin($email, $pwd) {
 
         //find user in Database.
         $user = findUserByUserName($email);

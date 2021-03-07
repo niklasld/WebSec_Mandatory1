@@ -9,7 +9,6 @@
         $validate = checkUser($user, $pwd);
 
         if($validate == "Success") {
-            echo "login Success!!!!";
             header("Location: ../normalUser/wallView.php"); 
         }
         else {
@@ -40,7 +39,7 @@
             if(password_verify($pwd, $user['Password'])) {
                 //set sessions data and return true
                 $_SESSION['logInNU'] = true;
-                $_SESSION['userId'] = $user['EUId'];
+                $_SESSION['userId'] = $user['UserId'];
                 $_SESSION['FirstName'] = $user['FirstName'];
                 return "Success";
             } 
