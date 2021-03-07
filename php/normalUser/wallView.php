@@ -5,6 +5,12 @@
     if(!isset($_SESSION['logInNU']) || $_SESSION['logInNU'] != true) {
         header("Location: ../anonUser/login.php"); 
     }
+
+    if(isset($_POST['WallPostIdDelete'])) {
+        include_once('./generalFunctions/deletePost.php');
+        deletePost($_POST['WallPostIdDelete']);
+        $_POST = array();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -18,12 +24,12 @@
 </head>
 <body>
     <button class="createWallPost" type="submit">Create Wallpost</button>
-    <script src="../../js/deleteWallPost.js"></script>
+    <script src="../../js/createWallPost.js"></script>
 
     <?php 
         include_once('./generalFunctions/core.php');
         getWallPosts();
     ?>
-    <script src="../../js/deleteWallPost.js"></script>
+    <script src="../../js/createWallPost.js"></script>
 </body>
 </html>
