@@ -2,9 +2,9 @@
 
     session_start();
 
-    // if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true) {
-    //     header("Location: ../anonUser/login.php"); 
-    // }
+    if(!isset($_SESSION['logInNU']) || $_SESSION['logInNU'] != true) {
+        header("Location: ../anonUser/login.php"); 
+    }
 ?>
 
 <!DOCTYPE html>

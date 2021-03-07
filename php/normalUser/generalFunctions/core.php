@@ -14,7 +14,8 @@
                 FileLink,
                 Timestamp,
                 FirstName,
-                LastName
+                LastName, 
+                CreatedBy
             FROM
                 wallposts
             INNER JOIN 
