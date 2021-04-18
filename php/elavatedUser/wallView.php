@@ -23,7 +23,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-    <button class="createWallPost" type="submit">Create Wallpost</button>
+    <?php include_once('../../header.php'); ?>
+    <br><button class="createWallPost" type="submit">Create Wallpost</button>
     <script src="../../js/createWallPost.js"></script>
 
     <?php 

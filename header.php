@@ -1,0 +1,1 @@
+<a href="php/normalUser/generalFunctions/signout.php">Sign out</a>

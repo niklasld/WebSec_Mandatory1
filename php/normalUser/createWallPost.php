@@ -10,8 +10,10 @@
 
         $success = createWallPost($_POST);
 
+        
         if($success == true) {
             header("Location: wallView.php"); 
+            //echo $_POST;
         }
         else {
             echo "an error happened...";

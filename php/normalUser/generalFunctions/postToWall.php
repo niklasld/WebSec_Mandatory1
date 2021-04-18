@@ -44,11 +44,13 @@
         }
         $stmt->bindParam(':CreatedBy', $postData['createdBy']);
 
+        var_dump($stmt);
         try {
             $stmt->execute();
             return true;
         }
         catch(PDOException $e) {
+            echo $e;
             return false;
         }
     } 

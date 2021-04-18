@@ -4,8 +4,8 @@
         //config data
         private $host = "localhost";
         private $db_name = "socialnetworkdb";
-        private $username = "root";
-        private $password = "";
+        private $username = "normalUser";
+        private $password = "Leganu4md";
 
         public $conn;
 
