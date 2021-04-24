@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $_SESSION['logIn']=false;
+    $_SESSION['logInNU']=false;
     
     //checking if username and password is postet
     if(isset($_POST['username']) && isset($_POST['password'])){

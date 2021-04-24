@@ -41,12 +41,16 @@
                 echo '<br><img src="'.$value['FileLink'].'" width="300" height="200"></img>';
             }
             echo '<br><p>'.$value['Content'].'</p><br>';
-            echo '<button name="Reply" data-id="'.$value['WallPostId'].'">Reply</button><br><br>';
+
+            echo '<form method="POST" action="../normalUser/replyWallPost.php">';
+            echo '<input type="hidden" name="postId" value="'.$value["WallPostId"].'">';
+            echo '<button class="replyToWallPost" name="Reply" data-id="'.$value['WallPostId'].'">Reply</button><br><br>';
+            echo '</form>';
             echo '<b>Replies:</b><br>';
             $replies = getRepliesFromId($value['WallPostId']);
             foreach($replies as $reply) {
-                echo '<p>'.$reply['Reply'].'</p>';
                 echo $reply['Timestamp'].' <i>'.$reply['FirstName'].' '.$reply['LastName'].'</i><br>';
+                echo '<p>'.$reply['Reply'].'</p>';
             }
         }
     }

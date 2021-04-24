@@ -25,7 +25,7 @@
 <body>
     <?php include_once('../../header.php'); ?>
     <br><button class="createWallPost" type="submit">Create Wallpost</button>
-    <script src="../../js/createWallPost.js"></script>
+    <!-- <script src="../../js/createWallPost.js"></script> -->
 
     <?php 
         include_once('./generalFunctions/viewWallPosts.php');
