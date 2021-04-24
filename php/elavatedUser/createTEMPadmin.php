@@ -1,6 +1,6 @@
 <?php
 
-    include_once('php/config/euDbConn.php');
+    include_once('../../php/config/euDbConn.php');
 
     $database = new EuDbConn();
 
