@@ -8,16 +8,16 @@
             //redirect
             header("Location: wallView.php"); 
         } else {
-            echo 'Error now allowed';
+            echo 'Error not allowed';
         }
     }
 
     function checkForCorrectUser($wallPostId) {
         //include dbconnection from souce.
-        include_once('../../php/config/userDbConn.php');
+        include_once('../../php/config/euDbConn.php');
 
         //create database conn
-        $database = new UserDbConn();
+        $database = new EuDbConn();
 
         //connect
         $connection = $database->getConnection();
@@ -43,7 +43,7 @@
 
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if($data['CreatedBy'] == $_SESSION['userId']) {
+        if(isset($_SESSION['logInEU']) && $_SESSION['logInEU'] == TRUE) {
            return true; 
         }
         return false;

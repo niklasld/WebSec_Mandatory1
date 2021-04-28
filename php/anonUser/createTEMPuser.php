@@ -1,15 +1,15 @@
 <?php
 
-    include_once('../../php/config/guestDbConn.php');
+    include_once('../../php/config/userDbConn.php');
 
-    $database = new GuestDbConn();
+    $database = new UserDbConn();
 
     $connection = $database->getConnection();
 
     $sqlQuery = '
         INSERT INTO
             users (FirstName, LastName, Password, Email)
-        VALUES ("User","Usersen", :password, "user@user.com")
+        VALUES ("User2","Usersen2", :password, "user2@user2.com")
 
 
     ';

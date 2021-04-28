@@ -60,7 +60,7 @@
             //update database with a failed login (set attempts +1, and update last login)
             else {
                 //set session data
-                $_SESSION['logInNU'] = false;
+                $_SESSION['logInEU'] = false;
 
                 //call update failed login function to update data.
                 updateFailedLogin($user, $currentTime);
@@ -184,7 +184,7 @@
 
     function findAdminByUsername($email) {
         //include dbconnection from anon souce.
-        include_once('../../php/config/euDbConn.php');
+        include_once('config/euDbConn.php');
 
         //create database conn
         $database = new euDbConn();
