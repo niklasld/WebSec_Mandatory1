@@ -1,7 +1,9 @@
 <?php
-    session_start();
-    $_SESSION['logInNU']=false;
-    
+    if(!session_status()) {
+        session_start();
+        $_SESSION['logInNU']=FALSE;
+    }
+    echo $_POST['username'];
     //checking if username and password is postet
     if(isset($_POST['username']) && isset($_POST['password'])){
 
@@ -10,10 +12,12 @@
         include_once('generalFunctions/core.php');
 
         //set post variables
+        echo $_POST['username'];
         $email = $_POST['username'];
         $pwd = $_POST['password'];
 
         //call test()
+        echo "hello";
         checkLogin($email, $pwd);
     }
 

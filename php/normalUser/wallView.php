@@ -1,8 +1,10 @@
 <?php
     session_start();
+    //echo $_SESSION['logInNU'];
 
-    if(!isset($_SESSION['logInNU']) || $_SESSION['logInNU'] != true) {
-        header("Location: ../anonUser/login.php"); 
+    if(!isset($_SESSION['logInNU']) || $_SESSION['logInNU'] != TRUE) {
+        //header("Location: ../../index.php"); 
+        echo $_SESSION['logInNU'];
     }
 
     if(isset($_POST['WallPostIdDelete'])) {

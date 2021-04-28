@@ -1,0 +1,1 @@
+<a href="../elavatedUser/generalFunctions/signout.php">Sign out</a>

@@ -1,19 +1,26 @@
 <?php
-
+    session_start();
     function checkLogin($email, $pwd) {
 
         //find user in Database.
         $user = findUserByUserName($email);
 
-        //check if user is validated.
-        $validate = checkUser($user, $pwd);
+        if(isset($user['LastLogin'])) {
+            //check if user is validated.
+            $validate = checkUser($user, $pwd);
 
-        if($validate == "Success") {
-            header("Location: ../../WebSec_Mandatory1/php/normalUser/wallView.php"); 
-        }
+            if($validate == "Success") {
+                header("Location: ../../php/normalUser/wallView.php"); 
+            }
+            else {
+                echo $validate;
+            }
+        } 
         else {
-            echo $validate;
+            echo "login failed...";
         }
+
+
 
     }
 
@@ -93,7 +100,7 @@
             //check for password match
             if(password_verify($pwd, $user['Password'])) {
                 //set sessions data and return true
-                $_SESSION['logInNU'] = true;
+                $_SESSION['logInNU'] = TRUE;
                 $_SESSION['userId'] = $user['UserId'];
                 $_SESSION['FirstName'] = $user['FirstName'];
                 return "Success";
@@ -114,8 +121,9 @@
     }
 
     function updateFailedLogin($user, $currentTime) {
+        $path = $_SERVER['DOCUMENT_ROOT']."/WebSec_Mandatory1";
         //include dbconnection from anon souce.
-        include_once('../../php/config/GuestDbConn.php');
+        include_once($path.'/php/config/GuestDbConn.php');
 
         //create database conn
         $database = new GuestDbConn();
@@ -149,8 +157,9 @@
     }
 
     function findUserByUserName($email) {
+        $path = $_SERVER['DOCUMENT_ROOT']."/WebSec_Mandatory1";
         //include dbconnection from anon souce.
-        include_once('../../php/config/GuestDbConn.php');
+        include_once($path.'/php/config/GuestDbConn.php');
 
         //create database conn
         $database = new GuestDbConn();

@@ -1,6 +1,8 @@
 <?php
-    session_start();
-    $_SESSION['logInEU']=false;
+    if(!session_status()) {
+        session_start();
+        $_SESSION['logInEU']=FALSE;
+    }
     
     //checking if username and password is postet
     if(isset($_POST['username']) && isset($_POST['password'])){
@@ -10,13 +12,26 @@
         //gets login functions
         include_once('php/anonUser/adminLogin.php');
 
-        $database = new Database();
+        $database = new EuDbConn();
 
         $usrName = $_POST['username'];
         $pwd = $_POST['password'];
 
         //do something
     }
+
+    function set_csrf(){
+        if(session_status() == 1){ session_start(); }
+        $csrf_token = bin2hex(random_bytes(25));
+        $_SESSION['csrf'] = $csrf_token;
+        echo '<input type="hidden" name="csrf" value="'.$csrf_token.'">';
+      }
+      function is_csrf_valid(){
+        if(session_status() == 1){ session_start(); }
+        if( ! isset($_SESSION['csrf']) || ! isset($_POST['csrf'])){ return false; }
+        if( $_SESSION['csrf'] != $_POST['csrf']){ return false; }
+        return true;
+      }
 
 ?>
 
@@ -31,6 +46,7 @@
 <body>
     <h1>Admin Login</h1>
     <form method="POST" action="">
+        <?php set_csrf() ?>
         <label>Username: </label><br>
         <input type="text" name="username" required><br>
 

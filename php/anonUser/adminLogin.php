@@ -18,7 +18,7 @@
     }
 
 ?>
-
+<!-- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,4 +38,4 @@
         <button type="submit">Login</button>
     </form>
 </body>
-</html>
+</html> -->

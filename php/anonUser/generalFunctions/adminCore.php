@@ -89,4 +89,40 @@
 
         return $data;
     }
+
+    function updateFailedLogin($user, $currentTime) {
+        $path = $_SERVER['DOCUMENT_ROOT']."/WebSec_Mandatory1";
+        //include dbconnection from anon souce.
+        include_once($path.'/php/config/euDbConn.php');
+
+        //create database conn
+        $database = new EuDbConn();
+
+        //connect
+        $connection = $database->getConnection();
+
+        $sqlQuery = '
+            UPDATE
+                elavatedusers
+            SET 
+                LastLogin=:LastLogin,
+                LoginAttempts=:LoginAttempts
+            WHERE
+                Email=:Email
+        ';
+
+        $stmt = $connection->prepare($sqlQuery);
+
+        $attempts = $user['LoginAttempts']+1;
+        $email = $user['Email'];
+
+        echo $attempts." ".$currentTime." ".$email;
+
+        //bind paramiters
+        $stmt->bindParam(':LastLogin', $currentTime);
+        $stmt->bindParam(':LoginAttempts', $attempts);
+        $stmt->bindParam(':Email', $email);
+
+        $stmt->execute();
+    }
 ?>

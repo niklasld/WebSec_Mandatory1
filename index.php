@@ -1,6 +1,8 @@
 <?php
-    session_start();
-    $_SESSION['logInNU']=false;
+    if(!session_status()) {
+        session_start();
+        $_SESSION['logInNU']=FALSE;
+    }
     
     //checking if username and password is postet
     if(isset($_POST['username']) && isset($_POST['password'])){
@@ -8,15 +10,32 @@
         include_once('php/config/guestDbConn.php');
 
         //gets login functions
-        include_once('php/anonUser/login.php');
+        // echo $_POST['username'];
+        //include_once('php/anonUser/login.php');
+        include_once('php/anonUser/generalFunctions/core.php');
 
-        $database = new Database();
+        $database = new GuestDbConn();
 
-        $usrName = $_POST['username'];
+        $email = $_POST['username'];
         $pwd = $_POST['password'];
+
+        checkLogin($email, $pwd);
 
         //do something
     }
+
+    function set_csrf(){
+        if(session_status() == 1){ session_start(); }
+        $csrf_token = bin2hex(random_bytes(25));
+        $_SESSION['csrf'] = $csrf_token;
+        echo '<input type="hidden" name="csrf" value="'.$csrf_token.'">';
+      }
+      function is_csrf_valid(){
+        if(session_status() == 1){ session_start(); }
+        if( ! isset($_SESSION['csrf']) || ! isset($_POST['csrf'])){ return false; }
+        if( $_SESSION['csrf'] != $_POST['csrf']){ return false; }
+        return true;
+      }
 
 ?>
 
@@ -30,7 +49,8 @@
 </head>
 <body>
     <h1>User Login</h1>
-    <form method="POST" action="#">
+    <form method="POST" action="php/anonUser/test.php">
+        <?php set_csrf() ?>
         <label>Username: </label><br>
         <input type="text" name="username" required><br>
 
