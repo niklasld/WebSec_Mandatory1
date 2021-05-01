@@ -2,15 +2,25 @@
 
     class GuestDbConn {
         //config data
-        private $host = "database-finalmandatory.cn5rmjtyyi6m.us-east-1.rds.amazonaws.com";
-        private $db_name = "socialnetworkdb";
-        private $username = 'admin';
-        private $password = 'Lasse-123';
-
         public $conn;
 
         // get database connection
         public function getConnection() {
+            include_once('localhost.php');
+
+            if($localhost) {
+                $host = "database-finalmandatory.cn5rmjtyyi6m.us-east-1.rds.amazonaws.com";
+                $db_name = "socialnetworkdb";
+                $username = 'admin';
+                $password = 'Lasse-123';
+            }
+            else {
+                $host = "localhost";
+                $db_name = "socialnetworkdb";
+                $username = 'root';
+                $password = '';
+            }
+
             $this->conn = null;
 
             try {

@@ -13,11 +13,11 @@
                 header("Location: ../../php/normalUser/wallView.php"); 
             }
             else {
-                echo $validate;
+                echo "login_failed";
             }
         } 
         else {
-            echo "login failed...";
+            echo "invalid_user";
         }
 
 
