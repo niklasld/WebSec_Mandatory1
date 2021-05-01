@@ -8,7 +8,7 @@
         $validate = checkAdminUser($user, $pwd);
 
         if($validate == "Success") {
-            header("Location: ../../Websec_Mandatory1/php/elavatedUser/wallView.php"); 
+            header("Location: ../php/elavatedUser/wallView.php"); 
         }
         else {
             echo $validate;

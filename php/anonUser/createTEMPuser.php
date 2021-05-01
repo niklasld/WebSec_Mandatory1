@@ -9,14 +9,14 @@
     $sqlQuery = '
         INSERT INTO
             users (FirstName, LastName, Password, Email)
-        VALUES ("User2","Usersen2", :password, "user2@user2.com")
+        VALUES ("Peter","Panter", :password, "PP@Gmail.com")
 
 
     ';
 
     $stmt = $connection->prepare($sqlQuery);
 
-    $password = "password";
+    $password = "Herssu15k";
     $password = password_hash($password, PASSWORD_DEFAULT);
 
     //bind stuff

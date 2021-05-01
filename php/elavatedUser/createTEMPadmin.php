@@ -16,7 +16,7 @@
 
     $stmt = $connection->prepare($sqlQuery);
 
-    $password = "password";
+    $password = "AeeSmus23h";
     $password = password_hash($password, PASSWORD_DEFAULT);
 
     //bind stuff

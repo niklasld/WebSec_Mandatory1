@@ -2,10 +2,10 @@
 
     class GuestDbConn {
         //config data
-        private $host = "localhost";
+        private $host = "database-finalmandatory.cn5rmjtyyi6m.us-east-1.rds.amazonaws.com";
         private $db_name = "socialnetworkdb";
-        private $username = "anonUser";
-        private $password = "4rTesAlm";
+        private $username = 'admin';
+        private $password = 'Lasse-123';
 
         public $conn;
 
