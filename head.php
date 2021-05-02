@@ -4,6 +4,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
+    <link rel="stylesheet" href="../../css/styles.css">
+
     <title>WebSec Mandatory</title>
     <meta charset="UTF-8">
 </div>
