@@ -1,3 +1,7 @@
 <?php
-    $localhost = false;
+    function getLocalhost() {
+        $localhost = true;
+
+        return $localhost;
+    }
 ?>

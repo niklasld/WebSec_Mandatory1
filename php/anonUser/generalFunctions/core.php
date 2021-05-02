@@ -157,7 +157,7 @@
     }
 
     function findUserByUserName($email) {
-        $path = $_SERVER['DOCUMENT_ROOT']."/WebSec_Mandatory1";
+        $path = $_SERVER['DOCUMENT_ROOT'];
         //include dbconnection from anon souce.
         include_once($path.'/php/config/GuestDbConn.php');
 

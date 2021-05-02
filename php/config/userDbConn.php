@@ -2,24 +2,29 @@
 
     class UserDbConn {
         //config
+        private $host = "";
+        private $db_name = "";
+        private $username = '';
+        private $password = '';
 
         public $conn;
 
         // get database connection
         public function getConnection() {
             include_once('localhost.php');
+            $localhost = getLocalhost();
             
-            if($localhost) {
-                $host = "database-finalmandatory.cn5rmjtyyi6m.us-east-1.rds.amazonaws.com";
-                $db_name = "socialnetworkdb";
-                $username = 'admin';
-                $password = 'Lasse-123';
+            if(!$localhost) {
+                $this->host = "database-finalmandatory.cn5rmjtyyi6m.us-east-1.rds.amazonaws.com";
+                $this->db_name = "socialnetworkdb";
+                $this->username = 'admin';
+                $this->password = 'Lasse-123';
             }
             else {
-                $host = "localhost";
-                $db_name = "socialnetworkdb";
-                $username = 'root';
-                $password = '';
+                $this->host = "localhost";
+                $this->db_name = "socialnetworkdb";
+                $this->username = 'root';
+                $this->password = '';
             }
 
             $this->conn = null;
