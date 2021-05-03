@@ -10,7 +10,7 @@
                 </li>
 
                 <li class="nav-item">
-                <a class="nav-link" href="../normalUser/generalFunctions/signout.php">Sign out</a>
+                <a class="nav-link" href="../normalUser/generalFunctions/signOut.php">Sign out</a>
                 </li>
 
             </ul>

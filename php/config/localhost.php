@@ -1,6 +1,6 @@
 <?php
     function getLocalhost() {
-        $localhost = true;
+        $localhost = false;
 
         return $localhost;
     }
