@@ -15,10 +15,14 @@
             $localhost = getLocalhost();
 
             if(!$localhost) {
+                // $this->host = "database-finalmandatory.cn5rmjtyyi6m.us-east-1.rds.amazonaws.com";
+                // $this->db_name = "socialnetworkdb";
+                // $this->username = 'admin';
+                // $this->password = 'Lasse-123';
                 $this->host = "database-finalmandatory.cn5rmjtyyi6m.us-east-1.rds.amazonaws.com";
                 $this->db_name = "socialnetworkdb";
-                $this->username = 'admin';
-                $this->password = 'Lasse-123';
+                $this->username = 'anonUser';
+                $this->password = '4rTesAlm';
             }
             else {
                 $this->host = "localhost";
