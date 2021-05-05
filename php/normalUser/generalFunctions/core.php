@@ -37,6 +37,9 @@
             if($value['CreatedBy'] == $_SESSION['userId']) {
                 echo '<form action="#" method="POST"><input type="hidden" name="WallPostIdDelete" value="'.$value['WallPostId'].'"><button type="submit" class="deletePost">Delete Post</button></form>';
             }
+            if($value['CreatedBy'] == $_SESSION['userId']) {
+                echo '<form action="#" method="POST"><input type="hidden" name="WallPostIdUpdate" value="'.$value['WallPostId'].'"><button type="submit" class="updateWallPost">Update Post</button></form>';
+            }
             if($value['FileLink'] != "") {
                 echo '<br><img src="'.$value['FileLink'].'" width="300" height="200"></img>';
             }
@@ -51,6 +54,9 @@
             foreach($replies as $reply) {
                 echo $reply['Timestamp'].' <i>'.$reply['FirstName'].' '.$reply['LastName'].'</i><br>';
                 echo '<p>'.$reply['Reply'].'</p>';
+                if($reply['CreatedBy'] == $_SESSION['userId']) {
+                    echo '<form action="#" method="POST"><input type="hidden" name="ReplyUpdate" value="'.$reply['PostReplyId'].'"><button type="submit" class="updateReply">Update Reply</button></form>';
+                }
             }
         }
     }

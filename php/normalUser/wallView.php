@@ -38,5 +38,7 @@
         getWallPosts();
     ?>
     <script src="../../js/createWallPost.js"></script>
+    <script src="../../js/updateWallPost.js"></script>
+    <script src="../../js/updateReply.js"></script>
 </body>
 </html>
