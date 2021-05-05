@@ -51,6 +51,7 @@
             echo '</form>';
             echo '<b>Replies:</b><br>';
             $replies = getRepliesFromId($value['WallPostId']);
+            var_dump($replies);
             foreach($replies as $reply) {
                 echo $reply['Timestamp'].' <i>'.$reply['FirstName'].' '.$reply['LastName'].'</i><br>';
                 echo '<p>'.$reply['Reply'].'</p>';
@@ -73,6 +74,7 @@
                 Timestamp,
                 FirstName,
                 LastName,
+                CreatedBy,
                 WallId 
             FROM 
                 postreply
