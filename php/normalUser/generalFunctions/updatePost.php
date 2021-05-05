@@ -33,6 +33,7 @@
 
         $stmt = $connection->prepare($sqlQuery);
 
+        var_dump($wallPostId);
         //sanitize
         $wallPostId = htmlspecialchars(strip_tags($wallPostId));
 

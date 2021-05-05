@@ -19,8 +19,15 @@
             echo "an error happened...";
         }
     }
+    if(isset($_POST['WallPostIdUpdate'])) {
+        include_once('generalFunctions/core.php');
+        getWallpostById($_POST['WallPostIdUpdate']);
+    }
+    else {
+        header("Location: wallView.php");
+    }
 ?>
-
+<!-- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,10 +43,11 @@
 <body>
     <?php include_once('../../header.php'); ?>
     <form method="POST" action="#">
+        <input type="hidden" name="wallPostId" value="<?php echo $_POST['WallPostIdUpdate'] ?>">
         <label>Header: </label><br>
         <input type="text" name="header" required><br>
 
-        <label>Content: </label><br>
+        <label>Content: UpdatwWallpost</label><br>
         <textarea type="text" name="content" rows="10" cols="50" required></textarea><br>
 
         <label>Image link: </label><br>
@@ -53,4 +61,4 @@
         //include_once('./generalFunctions/core.php');
     ?>
 </body>
-</html>
+</html> -->

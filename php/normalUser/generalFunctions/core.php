@@ -38,7 +38,7 @@
                 echo '<form action="#" method="POST"><input type="hidden" name="WallPostIdDelete" value="'.$value['WallPostId'].'"><button type="submit" class="deletePost">Delete Post</button></form>';
             }
             if($value['CreatedBy'] == $_SESSION['userId']) {
-                echo '<form action="#" method="POST"><input type="hidden" name="WallPostIdUpdate" value="'.$value['WallPostId'].'"><button type="submit" class="updateWallPost">Update Post</button></form>';
+                echo '<form action="updateWallPost.php" method="POST"><input type="hidden" name="WallPostIdUpdate" value="'.$value['WallPostId'].'"><button type="submit" class="updateWallPost">Update Post</button></form>';
             }
             if($value['FileLink'] != "") {
                 echo '<br><img src="'.$value['FileLink'].'" width="300" height="200"></img>';
@@ -51,7 +51,6 @@
             echo '</form>';
             echo '<b>Replies:</b><br>';
             $replies = getRepliesFromId($value['WallPostId']);
-            var_dump($replies);
             foreach($replies as $reply) {
                 echo $reply['Timestamp'].' <i>'.$reply['FirstName'].' '.$reply['LastName'].'</i><br>';
                 echo '<p>'.$reply['Reply'].'</p>';
@@ -60,6 +59,51 @@
                 }
             }
         }
+    }
+
+    function getWallPostById($wallPostId) {
+        include_once('../../php/config/userDbConn.php');
+
+        $database = new UserDbConn();
+
+        $connection = $database->getConnection();
+
+        $sqlQuery = '
+            SELECT
+                WallPostId,
+                Header,
+                Content,
+                FileLink
+            FROM
+                wallposts
+            WHERE
+                wallposts.WallPostId =:wallPostId
+        ';
+        $stmt = $connection->prepare($sqlQuery);
+
+        //sanitize
+        $wallPostId = htmlspecialchars(strip_tags($wallPostId));
+        
+        //bind params
+        $stmt->bindParam(':wallPostId', $wallPostId); 
+
+        $stmt->execute();
+
+        $result = $stmt->fetch();
+
+        if(!isset($result['FileLink'])) {
+            $result['FileLink'] = "";
+        }
+
+        echo '<form method="POST" action="#">';
+        echo '<input type="hidden" name="wallPostId" value="'.$result['WallPostId'].'">';
+        echo '<label>Header: </label><br>';
+        echo '<input type="text" name="header" value="'.$result['Header'].'" required><br>';
+        echo '<label>Content: </label><br>';
+        echo '<textarea type="text" name="content" rows="10" cols="50" required>'.$result['Content'].'</textarea><br>';
+        echo '<label>Image link: </label><br>';
+        echo '<input type="text" name="imgLink" value="'.$result['FileLink'].'"><br>';
+        echo '<button type="submit">Update WallPost</button>';
     }
 
     function getRepliesFromId($id) {
