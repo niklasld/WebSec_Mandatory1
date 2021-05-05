@@ -94,8 +94,13 @@
         if(!isset($result['FileLink'])) {
             $result['FileLink'] = "";
         }
-
-        echo '<form method="POST" action="#">';
+        echo '<link rel="stylesheet" href="../../css/styles.css">';
+        echo '<div xmlns="http://www.w3.org/1999/html">';
+        echo '<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">';
+        echo '<div class="container">';
+        echo '<ul class="navbar-nav mr-5"><li class="nav-item"><a class="nav-link" href="../normalUser/wallView.php">Front Page</a></li>';
+        echo '<li class="nav-item"><a class="nav-link" href="../normalUser/generalFunctions/signOut.php">Sign out</a></li></ul></div></nav></div>';
+        echo '<form method="POST" action="updateWallPost.php">';
         echo '<input type="hidden" name="wallPostId" value="'.$result['WallPostId'].'">';
         echo '<label>Header: </label><br>';
         echo '<input type="text" name="header" value="'.$result['Header'].'" required><br>';

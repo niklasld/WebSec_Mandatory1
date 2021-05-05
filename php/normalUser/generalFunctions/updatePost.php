@@ -1,9 +1,9 @@
 <?php
-    function updatePost($wallPostId) {
-        $allowed = checkForCorrectUser($wallPostId);
+    function updatePost($postData) {
+        $allowed = checkForCorrectUser($postData['wallPostId']);
         if($allowed == true) {
             //update post
-            updatePostAllowed($wallPostId);
+            updatePostAllowed($postData);
 
             //redirect
             header("Location: wallView.php"); 
@@ -50,7 +50,7 @@
         return false;
     }
 
-    function updatePostAllowed($wallPostId) {
+    function updatePostAllowed($postData) {
         if(isset($_SESSION['logInNU']) && $_SESSION['logInNU'] == true) {
             //include dbconnection from souce.
             include_once('../../php/config/userDbConn.php');
@@ -66,7 +66,7 @@
             $stmt = $connection->prepare($sqlQuery);
 
             //sanitize
-            $wallPostId = htmlspecialchars(strip_tags($wallPostId));
+            $postData['wallPostId'] = htmlspecialchars(strip_tags($postData['wallPostId']));
             $postData['header'] = htmlspecialchars(strip_tags($postData['header']));
             $postData['content'] = htmlspecialchars(strip_tags($postData['content']));
             if(isset($postData['imgLink'])){
@@ -74,7 +74,7 @@
             }
 
             //bind params
-            $stmt->bindParam(':WallPostId', $wallPostId);
+            $stmt->bindParam(':WallPostId', $postData['wallPostId']);
             $stmt->bindParam(':Header', $postData['header']);
             $stmt->bindParam(':Content', $postData['content']);
             if(isset($postData['imgLink'])) {
