@@ -1,9 +1,9 @@
 <?php
-    function updatePost($PostReplyId) {
-        $allowed = checkForCorrectUser($PostReplyId);
+    function updateReply($replyId) {
+        $allowed = checkForCorrectUser($replyId);
         if($allowed == true) {
             //update reply
-            updatePostAllowed($PostReplyId);
+            updatePostAllowed($replyId);
 
             //redirect
             header("Location: wallView.php"); 
@@ -12,7 +12,7 @@
         }
     }
 
-    function checkForCorrectUser($PostReplyId) {
+    function checkForCorrectUser($replyId) {
         //include dbconnection from souce.
         include_once('../../php/config/userDbConn.php');
 
@@ -26,7 +26,7 @@
             SELECT
                 *
             FROM
-                PostReplyId
+                postreply
             WHERE
                 PostReplyId = :PostReplyId
         ';
@@ -34,10 +34,10 @@
         $stmt = $connection->prepare($sqlQuery);
 
         //sanitize
-        $wallPostId = htmlspecialchars(strip_tags($PostReplyId));
+        $replyId = htmlspecialchars(strip_tags($replyId));
 
         //bind params
-        $stmt->bindParam(':WallPostId', $PostReplyId);
+        $stmt->bindParam(':PostReplyId', $replyId);
 
         $stmt->execute();
 
@@ -49,7 +49,7 @@
         return false;
     }
 
-    function updatePostAllowed($PostReplyId) {
+    function updateReplyAllowed($replyId) {
         if(isset($_SESSION['logInNU']) && $_SESSION['logInNU'] == true) {
             //include dbconnection from souce.
             include_once('../../php/config/userDbConn.php');
@@ -65,12 +65,12 @@
             $stmt = $connection->prepare($sqlQuery);
 
             //sanitize
-            $PostReplyId = htmlspecialchars(strip_tags($PostReplyId));
+            $replyId = htmlspecialchars(strip_tags($replyId));
             $postData['reply'] = htmlspecialchars(strip_tags($postData['reply']));
 
             //bind params
             $stmt->bindParam(':Reply', $postData['reply']);
-            $stmt->bindParam(':PostReplyId', $PostReplyId);
+            $stmt->bindParam(':PostReplyId', $replyId);
 
             //execute
             $stmt->execute();

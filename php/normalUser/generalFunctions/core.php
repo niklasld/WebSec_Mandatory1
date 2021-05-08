@@ -55,11 +55,12 @@
                 echo $reply['Timestamp'].' <i>'.$reply['FirstName'].' '.$reply['LastName'].'</i><br>';
                 echo '<p>'.$reply['Reply'].'</p>';
                 if($reply['CreatedBy'] == $_SESSION['userId']) {
-                    echo '<form action="#" method="POST"><input type="hidden" name="ReplyUpdate" value="'.$reply['PostReplyId'].'"><button type="submit" class="updateReply">Update Reply</button></form>';
+                    echo '<form action="updateReplyWP.php" method="POST"><input type="hidden" name="ReplyUpdate" value="'.$reply['PostReplyId'].'"><button type="submit" class="updateReply">Update Reply</button></form>';
                 }
             }
         }
     }
+
 
     function getWallPostById($wallPostId) {
         include_once('../../php/config/userDbConn.php');
@@ -144,5 +145,49 @@
         $result = $stmt->fetchAll();
 
         return $result;
+    }
+
+    function printUpdateReplies($replyId) {
+        include_once('../../php/config/userDbConn.php');
+
+        $database = new UserDbConn();
+
+        $connection = $database->getConnection();
+
+        $sqlQuery = '
+            SELECT
+                PostReplyId,
+                Reply
+            FROM
+                postreply
+            WHERE
+                postreply.PostReplyId =:postReplyId
+        ';
+
+        $stmt = $connection->prepare($sqlQuery);
+
+        //sanitize
+        $replyId = htmlspecialchars(strip_tags($replyId));
+        
+        //bind params
+        $stmt->bindParam(':postReplyId', $replyId); 
+
+        $stmt->execute();
+
+        $result = $stmt->fetch();
+
+        return $result;
+
+        echo '<link rel="stylesheet" href="../../css/styles.css">';
+        echo '<div xmlns="http://www.w3.org/1999/html">';
+        echo '<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">';
+        echo '<div class="container">';
+        echo '<ul class="navbar-nav mr-5"><li class="nav-item"><a class="nav-link" href="../normalUser/wallView.php">Front Page</a></li>';
+        echo '<li class="nav-item"><a class="nav-link" href="../normalUser/generalFunctions/signOut.php">Sign out</a></li></ul></div></nav></div>';
+        echo '<form method="POST" action="updateReplyWP.php">';
+        echo '<input type="hidden" name="postReplyId" value="'.$result['PostReplyId'].'">';
+        echo '<label>Reply: </label><br>';
+        echo '<input type="text" name="reply" value="'.$result['Reply'].'" required><br>';
+        echo '<button type="submit">Update reply</button>';
     }
 ?>
