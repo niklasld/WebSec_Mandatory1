@@ -176,7 +176,7 @@
 
         $result = $stmt->fetch();
 
-        return $result;
+        //return $result;
 
         echo '<link rel="stylesheet" href="../../css/styles.css">';
         echo '<div xmlns="http://www.w3.org/1999/html">';
