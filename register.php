@@ -3,23 +3,6 @@
         session_start();
         $_SESSION['logInNU']=FALSE;
     }
-    
-    //checking if username and password is postet
-    if(isset($_POST['username']) && isset($_POST['password'])){
-        //include dbconnection from anon souce.
-        include_once('php/config/guestDbConn.php');
-        include_once('php/anonUser/generalFunctions/core.php');
-
-        $database = new GuestDbConn();
-
-        $email = $_POST['username'];
-        $pwd = $_POST['password'];
-        
-
-        checkLogin($email, $pwd);
-
-        //do something
-    }
 
     function set_csrf(){
         if(session_status() == 1){ session_start(); }
@@ -47,17 +30,25 @@
 
 </head>
 <body>
-    <h1>User Login</h1>
-    <form method="POST" action="php/anonUser/test.php">
+    <h1>Register User</h1>
+    <form method="POST" action="php/anonUser/register_user.php">
         <?php set_csrf() ?>
-        <label>Username: </label><br>
-        <input type="text" name="username" required><br>
+        <label>Email: </label><br>
+        <input type="text" name="email" required><br>
 
         <label>Password: </label><br>
         <input type="password" name="password" required><br>
 
-        <button type="submit">Login </button><br>
-        <a href="register.php">Register User</a>
+        <label>Repeat Password: </label><br>
+        <input type="password" name="password2" required><br>
+
+        <label>Firstname: </label><br>
+        <input type="text" name="firstname" required><br>
+
+        <label>Lastname: </label><br>
+        <input type="text" name="lastname" required><br>
+
+        <button type="submit">Register</button><br>
     </form>
 </body>
 </html>

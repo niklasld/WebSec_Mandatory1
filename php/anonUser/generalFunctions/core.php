@@ -225,4 +225,82 @@
         return $data;
     }
 
+    function emailExists($email) {
+        $path = $_SERVER['DOCUMENT_ROOT'];
+        //include dbconnection from anon souce.
+        include_once($path.'/php/config/GuestDbConn.php');
+
+
+        //create database conn
+        $database = new GuestDbConn();
+
+        //connect
+        $connection = $database->getConnection();
+
+        $sqlQuery = '
+            SELECT 
+                Email
+            FROM
+                users
+            WHERE
+                Email =:Email
+        ';
+
+        $stmt = $connection->prepare($sqlQuery);
+
+        //sanatize
+        $email = htmlspecialchars(strip_tags($email));
+
+        //bind stuff
+        $stmt->bindParam(':Email', $email);
+
+        $stmt->execute();
+
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if(isset($data['Email'])) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+
+    }
+
+    function registerUser($userData) {
+        
+        include_once('../../php/config/userDbConn.php');
+
+        $database = new UserDbConn();
+
+        $connection = $database->getConnection();
+
+        $sqlQuery = '
+            INSERT INTO
+                users (FirstName, LastName, Password, Email)
+            VALUES (:firstname, :lastname, :password, :email)
+        ';
+
+        $stmt = $connection->prepare($sqlQuery);
+
+        //sanatize
+        $userData['email'] = htmlspecialchars(strip_tags($userData['email']));
+        $userData['firstname'] = htmlspecialchars(strip_tags($userData['firstname']));
+        $userData['lastname'] = htmlspecialchars(strip_tags($userData['lastname']));
+
+        $userData['password'] = password_hash($userData['password'], PASSWORD_DEFAULT);
+
+        //var_dump($userData);
+        //bind stuff
+        $stmt->bindParam(':email', $userData['email']);
+        $stmt->bindParam(':password', $userData['password']);
+        $stmt->bindParam(':firstname', $userData['firstname']);
+        $stmt->bindParam(':lastname', $userData['lastname']);
+        //var_dump($stmt);
+        $stmt->execute();
+        $connection = null;
+
+    }
+
 ?>
