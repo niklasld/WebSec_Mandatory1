@@ -22,6 +22,8 @@
                 users
             ON
                 wallposts.CreatedBy = users.UserId
+            ORDER BY
+                Timestamp DESC
         ';
 
         $stmt = $connection->prepare($sqlQuery);
@@ -33,31 +35,34 @@
         foreach($result as $value) {
             //echo '<br>'.$value['WallPostId'].'<br>';
             echo '<h1>'.$value['Header'].'</h1>';
-            echo 'Date created: '.$value['Timestamp'].' By: <i>'.$value['FirstName'].' '.$value['LastName'].'</i>';
+            echo '<p>Date created: '.$value['Timestamp'].' By: <i>'.$value['FirstName'].' '.$value['LastName'].'</i></p>';
+            
+            if($value['FileLink'] != "") {
+                echo '<br><img src="'.$value['FileLink'].'" width="300" height="200"></img>';
+            }
+            echo '<br><p>'.$value['Content'].'</p><br>';
             if($value['CreatedBy'] == $_SESSION['userId']) {
                 echo '<form action="#" method="POST"><input type="hidden" name="WallPostIdDelete" value="'.$value['WallPostId'].'"><button type="submit" class="deletePost">Delete Post</button></form>';
             }
             if($value['CreatedBy'] == $_SESSION['userId']) {
                 echo '<form action="updateWallPost.php" method="POST"><input type="hidden" name="WallPostIdUpdate" value="'.$value['WallPostId'].'"><button type="submit" class="updateWallPost">Update Post</button></form>';
             }
-            if($value['FileLink'] != "") {
-                echo '<br><img src="'.$value['FileLink'].'" width="300" height="200"></img>';
-            }
-            echo '<br><p>'.$value['Content'].'</p><br>';
 
             echo '<form method="POST" action="../normalUser/replyWallPost.php">';
             echo '<input type="hidden" name="postId" value="'.$value["WallPostId"].'">';
             echo '<button class="replyToWallPost" name="Reply" data-id="'.$value['WallPostId'].'">Reply</button><br><br>';
             echo '</form>';
-            echo '<b>Replies:</b><br>';
             $replies = getRepliesFromId($value['WallPostId']);
             foreach($replies as $reply) {
-                echo $reply['Timestamp'].' <i>'.$reply['FirstName'].' '.$reply['LastName'].'</i><br>';
+                echo '<b>'.$reply['FirstName'].' '.$reply['LastName'].'</b>';
                 echo '<p>'.$reply['Reply'].'</p>';
+                echo '<p>Date created: '.$reply['Timestamp'].'</p><br>';
                 if($reply['CreatedBy'] == $_SESSION['userId']) {
                     echo '<form action="updateReplyWP.php" method="POST"><input type="hidden" name="ReplyUpdate" value="'.$reply['PostReplyId'].'"><button type="submit" class="updateReply">Update Reply</button></form>';
                 }
             }
+            echo '<br>';
+            echo '<hr>';
         }
     }
 
@@ -101,6 +106,7 @@
         echo '<div class="container">';
         echo '<ul class="navbar-nav mr-5"><li class="nav-item"><a class="nav-link" href="../normalUser/wallView.php">Front Page</a></li>';
         echo '<li class="nav-item"><a class="nav-link" href="../normalUser/generalFunctions/signOut.php">Sign out</a></li></ul></div></nav></div>';
+        echo '<div class="content">';
         echo '<form method="POST" action="updateWallPost.php">';
         echo '<input type="hidden" name="wallPostId" value="'.$result['WallPostId'].'">';
         echo '<label>Header: </label><br>';
@@ -110,6 +116,7 @@
         echo '<label>Image link: </label><br>';
         echo '<input type="text" name="imgLink" value="'.$result['FileLink'].'"><br>';
         echo '<button type="submit">Update WallPost</button>';
+        echo '</div>';
     }
 
     function getRepliesFromId($id) {
@@ -176,7 +183,7 @@
 
         $result = $stmt->fetch();
 
-        return $result;
+        //return $result;
 
         echo '<link rel="stylesheet" href="../../css/styles.css">';
         echo '<div xmlns="http://www.w3.org/1999/html">';
@@ -184,10 +191,12 @@
         echo '<div class="container">';
         echo '<ul class="navbar-nav mr-5"><li class="nav-item"><a class="nav-link" href="../normalUser/wallView.php">Front Page</a></li>';
         echo '<li class="nav-item"><a class="nav-link" href="../normalUser/generalFunctions/signOut.php">Sign out</a></li></ul></div></nav></div>';
+        echo '<div class="content">';
         echo '<form method="POST" action="updateReplyWP.php">';
         echo '<input type="hidden" name="postReplyId" value="'.$result['PostReplyId'].'">';
         echo '<label>Reply: </label><br>';
         echo '<input type="text" name="reply" value="'.$result['Reply'].'" required><br>';
         echo '<button type="submit">Update reply</button>';
+        echo '</div>';
     }
 ?>

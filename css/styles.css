@@ -1,3 +1,6 @@
+body {
+    margin: 0;
+}
 ul {
     list-style-type: none;
     margin: 0;
@@ -30,4 +33,14 @@ li a:hover:not(.active) {
 
 .active {
     background-color: #4CAF50;
+}
+
+.content {
+    max-width: 500px;
+    margin: auto;
+}
+
+h1, p , b, i, label {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0; 
 }

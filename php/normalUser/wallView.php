@@ -30,15 +30,17 @@
 </head>
 <body>
     <?php include_once('../../header.php'); ?>
-    <br><button class="createWallPost" type="submit">Create Wallpost</button>
-    <script src="../../js/createWallPost.js"></script>
+    <div class="content">
+        <br><button class="createWallPost" type="submit">Create Wallpost</button>
+        <script src="../../js/createWallPost.js"></script>
 
-    <?php 
-        include_once('./generalFunctions/core.php');
-        getWallPosts();
-    ?>
-    <script src="../../js/createWallPost.js"></script>
-    <script src="../../js/updateWallPost.js"></script>
-    <script src="../../js/updateReply.js"></script>
+        <?php 
+            include_once('./generalFunctions/core.php');
+            getWallPosts();
+        ?>
+        <script src="../../js/createWallPost.js"></script>
+        <script src="../../js/updateWallPost.js"></script>
+        <script src="../../js/updateReply.js"></script>
+    </div>
 </body>
 </html>

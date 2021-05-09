@@ -1,9 +1,9 @@
 <?php
-    function updateReply($replyId) {
-        $allowed = checkForCorrectUser($replyId);
+    function updateReply($reply) {
+        $allowed = checkForCorrectUser($reply['postReplyId']);
         if($allowed == true) {
             //update reply
-            updatePostAllowed($replyId);
+            updateReplyAllowed($reply);
 
             //redirect
             header("Location: wallView.php"); 
@@ -49,7 +49,7 @@
         return false;
     }
 
-    function updateReplyAllowed($replyId) {
+    function updateReplyAllowed($postData) {
         if(isset($_SESSION['logInNU']) && $_SESSION['logInNU'] == true) {
             //include dbconnection from souce.
             include_once('../../php/config/userDbConn.php');
@@ -65,12 +65,12 @@
             $stmt = $connection->prepare($sqlQuery);
 
             //sanitize
-            $replyId = htmlspecialchars(strip_tags($replyId));
+            $postData['postReplyId'] = htmlspecialchars(strip_tags($postData['postReplyId']));
             $postData['reply'] = htmlspecialchars(strip_tags($postData['reply']));
 
             //bind params
-            $stmt->bindParam(':Reply', $postData['reply']);
-            $stmt->bindParam(':PostReplyId', $replyId);
+            $stmt->bindParam(':reply', $postData['reply']);
+            $stmt->bindParam(':PostReplyId', $postData['postReplyId']);
 
             //execute
             $stmt->execute();

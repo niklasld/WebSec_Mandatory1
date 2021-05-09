@@ -7,9 +7,11 @@
 
     if(isset($_POST['reply']) && isset($_POST['postReplyId'])) {
         include_once('generalFunctions/updateReply.php');
-
-        $success = updatePost($_POST);
-        var_dump($_POST);
+        //var_dump($_POST);
+        echo "some wierd error!";
+        header("refresh:5;");
+        $success = updateReply($_POST);
+        
         
         // if($success == true) {
         //     header("Location: wallView.php"); 
@@ -19,9 +21,9 @@
         //     echo "an error happened...";
         // }
     }
-    if(isset($_POST['WallPostIdUpdate'])) {
+    if(isset($_POST['ReplyUpdate'])) {
         include_once('generalFunctions/core.php');
-        getWallpostById($_POST['ReplyUpdate']);
+        printUpdateReplies($_POST['ReplyUpdate']);
     }
     else {
         echo "nothing hit";
