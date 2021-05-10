@@ -22,6 +22,8 @@
                 users
             ON
                 wallposts.CreatedBy = users.UserId
+            ORDER BY
+                WallPostId DESC
         ';
 
         $stmt = $connection->prepare($sqlQuery);

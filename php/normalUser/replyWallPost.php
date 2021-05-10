@@ -39,18 +39,21 @@
 </head>
 <body>
 <?php include_once('../../header.php'); ?>
-    <form method="POST" action="#">
-        <input type="hidden" name="postId" value="<?php echo $_POST['postId'];?>">
+    <div class="content">
+        <h1>Create reply</h1>
+        <form method="POST" action="#">
+            <input type="hidden" name="postId" value="<?php echo $_POST['postId'];?>">
 
-        <label>Reply: </label><br>
-        <textarea type="text" name="reply" rows="10" cols="50" required></textarea><br>
+            <label>Reply: </label><br>
+            <textarea type="text" name="reply" rows="10" cols="50" required></textarea><br>
 
-        <!-- <input type="hidden" name="createdBy" value="<?php //echo $_SESSION['userId'] ?>"> -->
+            <!-- <input type="hidden" name="createdBy" value="<?php //echo $_SESSION['userId'] ?>"> -->
 
-        <button type="submit">Reply</button>
-    </form>
-    <?php 
-        //include_once('./generalFunctions/core.php');
-    ?>
+            <button type="submit">Reply</button>
+        </form>
+        <?php 
+            //include_once('./generalFunctions/core.php');
+        ?>
+    </div>
 </body>
 </html>
