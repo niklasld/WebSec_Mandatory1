@@ -25,13 +25,15 @@
 </head>
 <body>
     <?php include_once('../../headerAdmin.php'); ?>
-    <br><button class="createWallPost" type="submit">Create Wallpost</button>
-    <!-- <script src="../../js/createWallPost.js"></script> -->
+        <div class="content">
+        <br><button class="createWallPost" type="submit">Create Wallpost</button>
+        <!-- <script src="../../js/createWallPost.js"></script> -->
 
-    <?php 
-        include_once('./generalFunctions/viewWallPosts.php');
-        getWallPosts();
-    ?>
+        <?php 
+            include_once('./generalFunctions/viewWallPosts.php');
+            getWallPosts();
+        ?>
+    </div>
     <script src="../../js/createWallPost.js"></script>
 </body>
 </html>
