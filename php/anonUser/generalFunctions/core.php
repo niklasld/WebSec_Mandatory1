@@ -13,7 +13,9 @@
                 header("Location: ../../php/normalUser/wallView.php"); 
             }
             else {
-                echo "login_failed";
+                echo "<br>";
+                echo $validate;
+                header("refresh:3; url=../../index.php");
             }
         } 
         else {
@@ -121,7 +123,7 @@
     }
 
     function updateFailedLogin($user, $currentTime) {
-        $path = $_SERVER['DOCUMENT_ROOT']."/WebSec_Mandatory1";
+        $path = $_SERVER['DOCUMENT_ROOT'];
         //include dbconnection from anon souce.
         include_once($path.'/php/config/GuestDbConn.php');
 

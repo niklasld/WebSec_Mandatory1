@@ -20,7 +20,18 @@
             echo "an error happened...";
         }
     }
-    // echo "postID: ".$_POST['postId'];
+    function set_csrf(){
+        if(session_status() == 1){ session_start(); }
+        $csrf_token = bin2hex(random_bytes(25));
+        $_SESSION['csrf'] = $csrf_token;
+        echo '<input type="hidden" name="csrf" value="'.$csrf_token.'">';
+      }
+      function is_csrf_valid(){
+        if(session_status() == 1){ session_start(); }
+        if( ! isset($_SESSION['csrf']) || ! isset($_POST['csrf'])){ return false; }
+        if( $_SESSION['csrf'] != $_POST['csrf']){ return false; }
+        return true;
+      }
 ?>
 
 <!DOCTYPE html>
@@ -42,6 +53,7 @@
     <div class="content">
         <h1>Create reply</h1>
         <form method="POST" action="#">
+            <?php set_csrf() ?>
             <input type="hidden" name="postId" value="<?php echo $_POST['postId'];?>">
 
             <label>Reply: </label><br>

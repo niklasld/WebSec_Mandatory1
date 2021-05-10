@@ -4,14 +4,20 @@
         //find user in Database.
         $user = findAdminByUsername($email);
 
+        if(isset($user['Email'])) {
         //check if user is validated.
-        $validate = checkAdminUser($user, $pwd);
+            $validate = checkAdminUser($user, $pwd);
 
-        if($validate == "Success") {
-            header("Location: ../php/elavatedUser/wallView.php"); 
+            if($validate == "Success") {
+                header("Location: ../php/elavatedUser/wallView.php"); 
+            }
+            else {
+                echo $validate;
+            }
         }
         else {
-            echo $validate;
+            echo "Error in username or password";
+            header('refresh:3; url=../../adminLogin.php');
         }
     }
 
@@ -56,7 +62,7 @@
     }
 
     function findAdminByUsername($email) {
-        $path = $_SERVER['DOCUMENT_ROOT']."/WebSec_Mandatory1";
+        $path = $_SERVER['DOCUMENT_ROOT'];
         //include dbconnection from anon souce.
         include_once($path.'/php/config/GuestDbConn.php');
 
@@ -91,7 +97,7 @@
     }
 
     function updateFailedLogin($user, $currentTime) {
-        $path = $_SERVER['DOCUMENT_ROOT']."/WebSec_Mandatory1";
+        $path = $_SERVER['DOCUMENT_ROOT'];
         //include dbconnection from anon souce.
         include_once($path.'/php/config/euDbConn.php');
 

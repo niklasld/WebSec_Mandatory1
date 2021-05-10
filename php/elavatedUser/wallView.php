@@ -26,7 +26,6 @@
 <body>
     <?php include_once('../../headerAdmin.php'); ?>
         <div class="content">
-        <br><button class="createWallPost" type="submit">Create Wallpost</button>
         <!-- <script src="../../js/createWallPost.js"></script> -->
 
         <?php 

@@ -100,6 +100,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Close connection
     mysqli_close($conn);
 }
+
+function set_csrf(){
+    if(session_status() == 1){ session_start(); }
+    $csrf_token = bin2hex(random_bytes(25));
+    $_SESSION['csrf'] = $csrf_token;
+    echo '<input type="hidden" name="csrf" value="'.$csrf_token.'">';
+  }
+  function is_csrf_valid(){
+    if(session_status() == 1){ session_start(); }
+    if( ! isset($_SESSION['csrf']) || ! isset($_POST['csrf'])){ return false; }
+    if( $_SESSION['csrf'] != $_POST['csrf']){ return false; }
+    return true;
+  }
 ?>
  
 <!DOCTYPE html>
@@ -111,6 +124,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <body>
     <h2>Register user</h2>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <?php set_csrf() ?>
         <div class="form-group">
             <label>First name</label>
             <input type="text" name="fName" class="form-control" value="">

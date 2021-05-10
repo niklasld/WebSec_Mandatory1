@@ -1,4 +1,18 @@
 <?php 
+
+    function set_csrf(){
+        if(session_status() == 1){ session_start(); }
+        $csrf_token = bin2hex(random_bytes(25));
+        $_SESSION['csrf'] = $csrf_token;
+        echo '<input type="hidden" name="csrf" value="'.$csrf_token.'">';
+    }
+    function is_csrf_valid(){
+        if(session_status() == 1){ session_start(); }
+        if( ! isset($_SESSION['csrf']) || ! isset($_POST['csrf'])){ return false; }
+        if( $_SESSION['csrf'] != $_POST['csrf']){ return false; }
+        return true;
+    }
+    
     function getWallPosts() {
         include_once('../../php/config/euDbConn.php');
 
@@ -41,20 +55,13 @@
                 echo '<br><img src="'.$value['FileLink'].'" width="300" height="200"></img>';
             }
             echo '<br><p>'.$value['Content'].'</p><br>';
-            echo '<form action="#" method="POST"><input type="hidden" name="WallPostIdDelete" value="'.$value['WallPostId'].'"><button type="submit" class="deletePost">Delete Post</button></form>';
-            echo '<form action="updateWallPost.php" method="POST"><input type="hidden" name="WallPostIdUpdate" value="'.$value['WallPostId'].'"><button type="submit" class="updateWallPost">Update Post</button></form>';
-            echo '<form method="POST" action="../normalUser/replyWallPost.php">';
-            echo '<input type="hidden" name="postId" value="'.$value["WallPostId"].'">';
-            echo '<button class="replyToWallPost" name="Reply" data-id="'.$value['WallPostId'].'">Reply</button><br><br>';
-            echo '</form>';
+            echo '<form action="#" method="POST">'.set_csrf().'<input type="hidden" name="WallPostIdDelete" value="'.$value['WallPostId'].'"><button type="submit" class="deletePost">Delete Post</button></form>';
             $replies = getRepliesFromId($value['WallPostId']);
             foreach($replies as $reply) {
                 echo '<b>'.$reply['FirstName'].' '.$reply['LastName'].'</b>';
                 echo '<p>'.$reply['Reply'].'</p>';
                 echo '<p>Date created: '.$reply['Timestamp'].'</p><br>';
-                if($reply['CreatedBy'] == $_SESSION['userId']) {
-                    echo '<form action="updateReplyWP.php" method="POST"><input type="hidden" name="ReplyUpdate" value="'.$reply['PostReplyId'].'"><button type="submit" class="updateReply">Update Reply</button></form>';
-                }
+                echo '<form action="generalFunctions/deleteReply.php" method="POST">'.set_csrf().'<input type="hidden" name="ReplyDelete" value="'.$reply['PostReplyId'].'"><button type="submit" class="deleteReply">Delete Reply</button></form>';
             }
             echo '<br>';
             echo '<hr>';
