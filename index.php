@@ -5,7 +5,7 @@
     }
     
     //checking if username and password is postet
-    if(isset($_POST['username']) && isset($_POST['password'])){
+    if(isset($_POST['username']) && isset($_POST['password']) && is_csrf_valid()){
         //include dbconnection from anon souce.
         include_once('php/config/guestDbConn.php');
         include_once('php/anonUser/generalFunctions/core.php');

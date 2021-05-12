@@ -4,7 +4,7 @@
     $_SESSION['logIn']=false;
     
 
-    if(isset($_POST['username']) && isset($_POST['password'])){
+    if(isset($_POST['username']) && isset($_POST['password']) && is_csrf_valid()){
         include_once('conn/database.php');
 
         $database = new Database();

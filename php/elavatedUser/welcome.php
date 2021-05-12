@@ -2,8 +2,14 @@
     
     session_start();
 
-    if(!isset($_SESSION['logInEU']) || $_SESSION['logInEU'] != true) {
+    if(!isset($_SESSION['logInEU']) || $_SESSION['logInEU'] != true && is_csrf_valid()) {
         header("Location: login.php"); 
+    }
+    function is_csrf_valid(){
+        if(session_status() == 1){ session_start(); }
+        if( ! isset($_SESSION['csrf']) || ! isset($_POST['csrf'])){ return false; }
+        if( $_SESSION['csrf'] != $_POST['csrf']){ return false; }
+        return true;
     }
 
 ?>

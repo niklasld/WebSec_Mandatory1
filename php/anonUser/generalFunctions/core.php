@@ -5,7 +5,7 @@
         //find user in Database.
         $user = findUserByUserName($email);
 
-        if(isset($user['LastLogin'])) {
+        if(isset($user['LastLogin']) && is_csrf_valid()) {
             //check if user is validated.
             $validate = checkUser($user, $pwd);
 
@@ -20,10 +20,16 @@
         } 
         else {
             echo "invalid_user";
+            exit();
         }
 
+    }
 
-
+    function is_csrf_valid(){
+        if(session_status() == 1){ session_start(); }
+        if( ! isset($_SESSION['csrf']) || ! isset($_POST['csrf'])){ return false; }
+        if( $_SESSION['csrf'] != $_POST['csrf']){ return false; }
+        return true;
     }
 
     function checkLoginAdmin($email, $pwd) {

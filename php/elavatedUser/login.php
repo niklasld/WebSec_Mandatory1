@@ -3,7 +3,7 @@
     $_SESSION['logInEU']=false;
     
     //checking if username and password is postet
-    if(isset($_POST['username']) && isset($_POST['password'])){
+    if(isset($_POST['username']) && isset($_POST['password']) && is_csrf_valid()){
 
 
         //gets login functions

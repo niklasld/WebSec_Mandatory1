@@ -5,7 +5,7 @@
     }
     echo $_POST['username'];
     //checking if username and password is postet
-    if(isset($_POST['username']) && isset($_POST['password'])){
+    if(isset($_POST['username']) && isset($_POST['password']) && is_csrf_valid()){
 
 
         //gets login functions
@@ -19,6 +19,13 @@
         //call test()
         echo "hello";
         checkLogin($email, $pwd);
+    }
+
+    function is_csrf_valid(){
+        if(session_status() == 1){ session_start(); }
+        if( ! isset($_SESSION['csrf']) || ! isset($_POST['csrf'])){ return false; }
+        if( $_SESSION['csrf'] != $_POST['csrf']){ return false; }
+        return true;
     }
 
 ?>
