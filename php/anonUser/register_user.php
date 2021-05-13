@@ -5,7 +5,8 @@
         isset($_POST['password2']) &&
         isset($_POST['firstname']) &&
         isset($_POST['lastname']) &&
-        $_POST['password'] == $_POST['password2']){
+        $_POST['password'] == $_POST['password2'] &&
+        checkEmail($_POST['email'])){
 
         //include dbconnection from anon souce.
         include_once('../config/guestDbConn.php');
@@ -36,11 +37,11 @@
         if(!$emailExists && $msg == "strong") {
             registerUser($_POST);
             echo "Success, user created. Redirecting to login...";
-            header("refresh:3; url=../../index.php");
+            //header("refresh:3; url=../../index.php");
         }
         else {
             echo "Email already exists or you password is too weak!";
-            header( "refresh:5; url=../../register.php" );            
+            //header( "refresh:5; url=../../register.php" );            
         }
 
     }
@@ -48,6 +49,12 @@
         echo "Fields missing or passwords dont match, please try again.";
         header( "refresh:5; url=../../register.php" );
     }
+
+    function checkEmail($email) {
+        $find1 = strpos($email, '@');
+        $find2 = strpos($email, '.');
+        return ($find1 !== false && $find2 !== false && $find2 > $find1);
+     }
 
 
 ?>
