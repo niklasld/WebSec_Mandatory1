@@ -11,6 +11,13 @@
         deletePost($_POST['WallPostIdDelete']);
         $_POST = array();
     }
+
+    function is_csrf_valid(){
+        if(session_status() == 1){ session_start(); }
+        if( ! isset($_SESSION['csrf']) || ! isset($_POST['csrf'])){ return false; }
+        if( $_SESSION['csrf'] != $_POST['csrf']){ return false; }
+        return true;
+    }
 ?>
 
 <!DOCTYPE html>

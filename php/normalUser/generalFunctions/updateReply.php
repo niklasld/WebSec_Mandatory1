@@ -12,6 +12,13 @@
         }
     }
 
+    function is_csrf_valid(){
+        if(session_status() == 1){ session_start(); }
+        if( ! isset($_SESSION['csrf']) || ! isset($_POST['csrf'])){ return false; }
+        if( $_SESSION['csrf'] != $_POST['csrf']){ return false; }
+        return true;
+    }
+
     function checkForCorrectUser($replyId) {
         //include dbconnection from souce.
         include_once('../../php/config/userDbConn.php');
