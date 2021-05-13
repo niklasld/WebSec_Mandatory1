@@ -10,7 +10,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="../elavatedUser/generalFunctions/signout.php">Sign out</a>
+                    <a href="../elavatedUser/generalFunctions/signOut.php">Sign out</a>
                 </li>
 
             </ul>
