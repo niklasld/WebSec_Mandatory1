@@ -4,7 +4,6 @@
     // if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true) {
     //     header("Location: ../anonUser/login.php"); 
     // }
-
     if(isset($_POST['reply']) && isset($_POST['postReplyId'])) {
         include_once('generalFunctions/updateReply.php');
         //var_dump($_POST);
@@ -27,4 +26,5 @@
         echo "nothing hit";
         //header("Location: wallView.php");
     }
+
 ?>
