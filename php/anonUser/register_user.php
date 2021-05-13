@@ -37,11 +37,11 @@
         if(!$emailExists && $msg == "strong") {
             registerUser($_POST);
             echo "Success, user created. Redirecting to login...";
-            //header("refresh:3; url=../../index.php");
+            header("refresh:3; url=../../index.php");
         }
         else {
             echo "Email already exists or you password is too weak!";
-            //header( "refresh:5; url=../../register.php" );            
+            header( "refresh:5; url=../../register.php" );            
         }
 
     }
