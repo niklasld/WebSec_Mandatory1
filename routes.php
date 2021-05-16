@@ -16,8 +16,12 @@
     //normal user login
     post('/login', '/user/posts/login.php');
 
+    //view for vieweing wallposts
     get('/wallview', '/user/views/wallView.php');
 
+    //CRUD wallposts
+    get('/createWallPost', '/user/views/createWallPostView.php');
+    post('/createWallPost', '/user/posts/createWallPost.php');
 
 
     // ##################################################

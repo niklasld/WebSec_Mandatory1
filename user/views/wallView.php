@@ -1,7 +1,4 @@
 <?php
-    //session_start();
-    //echo $_SESSION['logInNU'];
-    //echo $_SESSION['logInNU'];
 
     if(!isset($_SESSION['logInNU']) || $_SESSION['logInNU'] != TRUE) {
         //header("Location: ../../index.php"); 
@@ -33,7 +30,7 @@
     <?php include_once($_SERVER['DOCUMENT_ROOT'].'/user/views/fragments/header.php'); ?>
     <div class="content">
         <br><button class="createWallPost" type="submit">Create Wallpost</button>
-        <script src="../../js/createWallPost.js"></script>
+        <!--<script src="../../js/createWallPost.js"></script>-->
 
         <?php 
             include_once($_SERVER['DOCUMENT_ROOT'].'/user/dataGet/wallPosts.php');
