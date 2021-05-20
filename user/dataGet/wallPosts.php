@@ -38,7 +38,7 @@
             echo '<h1>'.$value['Header'].'</h1>';
             echo 'Date created: '.$value['Timestamp'].' By: <i>'.$value['FirstName'].' '.$value['LastName'].'</i>';
             if($value['CreatedBy'] == $_SESSION['userId']) {
-                echo '<form action="#" method="POST">'.set_csrf().'<input type="hidden" name="WallPostIdDelete" value="'.$value['WallPostId'].'"><button type="submit" class="deletePost">Delete Post</button></form>';
+                echo '<form action="../deletePost" method="POST"><input type="hidden" name="WallPostIdDelete" value="'.$value['WallPostId'].'"><button type="submit" class="deletePost">Delete Post</button></form>';
             }
             if($value['FileLink'] != "") {
                 echo '<br><img src="'.$value['FileLink'].'" width="300" height="200"></img>';

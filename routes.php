@@ -33,6 +33,10 @@
     post('/replyWallPost', '/user/views/replyWallPost.php');
     post('/postReply', '/user/posts/postReply.php');
 
+    //deleteWallPost
+    //post('/deleteWallPost','/user/views/deleteWallPost');
+    post('/deletePost', '/user/posts/deletePost.php');
+
     // ##################################################
     // ##################################################
     // ##################################################
