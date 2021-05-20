@@ -19,9 +19,12 @@
     //view for vieweing wallposts
     get('/wallview', '/user/views/wallView.php');
 
-    //CRUD wallposts
+    //CRUD
     get('/createWallPost', '/user/views/createWallPostView.php');
     post('/createWallPost', '/user/posts/createWallPost.php');
+
+    get('/registerUser', '/user/views/register.php');
+    post('/registerUser', '/user/posts/register_user.php');
 
 
     // ##################################################

@@ -1,12 +1,12 @@
 <?php
-    if(!session_status()) {
-        session_start();
-        $_SESSION['logInNU']=FALSE;
-    }
-    echo session_status();
-    session_start();
+    // if(!session_status()) {
+    //     session_start();
+    //     $_SESSION['logInNU']=FALSE;
+    // }
+    // echo session_status();
+    // session_start();
     echo $_SESSION['logInNU'];
-    if( ! is_csrf_valid() ){
+    if(!is_csrf_valid()){
         // The form is forged
         // Code here
         echo "what=!";

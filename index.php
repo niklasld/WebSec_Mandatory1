@@ -29,7 +29,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
-    <title>Document</title>
+    <title>Login</title>
 
 </head>
 <body>
@@ -43,7 +43,7 @@
         <input type="password" name="password" required><br>
 
         <button type="submit">Login </button><br>
-        <a href="register.php">Register User</a>
+        <a href="registerUser">Register User</a>
     </form>
 </body>
 </html>
