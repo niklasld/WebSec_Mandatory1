@@ -6,11 +6,11 @@
             <!-- Links -->
             <ul class="navbar-nav mr-5">
                 <li class="nav-item">
-                    <a class="nav-link" href="../normalUser/wallView.php">Front Page</a>
+                    <a class="nav-link" href="../wallview">Front Page</a>
                 </li>
 
                 <li class="nav-item">
-                <a class="nav-link" href="../normalUser/generalFunctions/signOut.php">Sign out</a>
+                <a class="nav-link" href="../signOut">Sign out</a>
                 </li>
 
             </ul>

@@ -37,6 +37,9 @@
     //post('/deleteWallPost','/user/views/deleteWallPost');
     post('/deletePost', '/user/posts/deletePost.php');
 
+    //sign out
+    get('/signOut', '/user/views/signOut.php');
+
     // ##################################################
     // ##################################################
     // ##################################################
