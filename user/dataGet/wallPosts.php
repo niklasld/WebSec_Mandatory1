@@ -45,7 +45,7 @@
             }
             echo '<br><p>'.$value['Content'].'</p><br>';
 
-            echo '<form method="POST" action="../normalUser/replyWallPost.php">'.set_csrf().'';
+            echo '<form method="POST" action="../replyWallPost">';
             echo '<input type="hidden" name="postId" value="'.$value["WallPostId"].'">';
             echo '<button class="replyToWallPost" name="Reply" data-id="'.$value['WallPostId'].'">Reply</button><br><br>';
             echo '</form>';

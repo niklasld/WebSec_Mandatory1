@@ -19,13 +19,19 @@
     //view for vieweing wallposts
     get('/wallview', '/user/views/wallView.php');
 
-    //CRUD
+    //createWall Post
     get('/createWallPost', '/user/views/createWallPostView.php');
     post('/createWallPost', '/user/posts/createWallPost.php');
 
+
+    //registerUser
     get('/registerUser', '/user/views/register.php');
     post('/registerUser', '/user/posts/register_user.php');
 
+    //replyWallPost
+    //get('/replyWallPost', '/user/views/replyWallPost.php');
+    post('/replyWallPost', '/user/views/replyWallPost.php');
+    post('/postReply', '/user/posts/postReply.php');
 
     // ##################################################
     // ##################################################
