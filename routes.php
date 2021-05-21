@@ -16,8 +16,15 @@
     //normal user login
     post('/login', '/user/posts/login.php');
 
+    //admin user login
+    get('/adminLogin', '/elavatedUser/views/login.php');
+    post('/postAdminLogin', '/elavatedUser/posts/login.php');
+
     //view for vieweing wallposts
     get('/wallview', '/user/views/wallView.php');
+
+    //admin wallview
+    get('/wallviewAdmin', '/elavatedUser/views/wallView.php');
 
     //createWall Post
     get('/createWallPost', '/user/views/createWallPostView.php');
@@ -35,10 +42,13 @@
 
     //deleteWallPost
     //post('/deleteWallPost','/user/views/deleteWallPost');
-    post('/deletePost', '/user/posts/deletePost.php');
+    post('/deletePost', '/user/views/deletePost.php');
+    post('/deletePostConfirmed', '/user/posts/deletePost.php');
+    post('/deletePostAdmin', '/elavatedUser/views/deletePost.php');
 
     //sign out
     get('/signOut', '/user/views/signOut.php');
+    get('/signOutAdmin', '/elavatedUser/views/signOut.php');
 
     // ##################################################
     // ##################################################
