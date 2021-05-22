@@ -5,14 +5,10 @@
         echo "what=!";
         exit();
     }
-    
-    /////////////////////////////////////////////////////////
-    //////////////////////CSFR!!!!///////////////////////////
-    /////////////////////////////////////////////////////////
 
-    if(!isset($_SESSION['logInNU']) || $_SESSION['logInNU'] != TRUE) {
+    if(!isset($_SESSION['logInEU']) || $_SESSION['logInEU'] != TRUE) {
         //header("Location: ../../index.php"); 
-        echo $_SESSION['logInNU'];
+        echo $_SESSION['logInEU'];
     }
 
     if(isset($_POST['WallPostIdDelete'])) {
@@ -23,23 +19,23 @@
 
     function deletePost($wallPostId) {
         $allowed = checkForCorrectUser($wallPostId);
-        if($allowed == true) {
+        if($allowed == true || $_SESSION['logInEU'] == TRUE) {
             //delete post
             deletePostAllowed($wallPostId);
 
             //redirect
-            header("Location: ../../wallview"); 
+            header("Location: ../../wallviewAdmin"); 
         } else {
-            echo 'Error now allowed';
+            echo 'Error not allowed';
         }
     }
 
     function checkForCorrectUser($wallPostId) {
         //include dbconnection from souce.
-        include_once($_SERVER['DOCUMENT_ROOT'].'/user/config/userDbConn.php');
+        include_once($_SERVER['DOCUMENT_ROOT'].'/elavatedUser/config/euDbConn.php');
 
         //create database conn
-        $database = new UserDbConn();
+        $database = new EuDbConn();
 
         //connect
         $connection = $database->getConnection();
@@ -72,12 +68,12 @@
     }
 
     function deletePostAllowed($wallPostId) {
-        if(isset($_SESSION['logInNU']) && $_SESSION['logInNU'] == true) {
+        if(isset($_SESSION['logInEU']) && $_SESSION['logInEU'] == true) {
             //include dbconnection from souce.
-            include_once($_SERVER['DOCUMENT_ROOT'].'/user/config/userDbConn.php');
+            include_once($_SERVER['DOCUMENT_ROOT'].'/elavatedUser/config/euDbConn.php');
 
             //create database conn
-            $database = new UserDbConn();
+            $database = new EuDbConn();
 
             //connect
             $connection = $database->getConnection();

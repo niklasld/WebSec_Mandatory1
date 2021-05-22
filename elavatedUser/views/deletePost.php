@@ -24,7 +24,7 @@
 <body>
     <?php include_once($_SERVER['DOCUMENT_ROOT'].'/user/views/fragments/header.php'); ?>
     <div class="content">
-        <form method="POST" action="../../deletePostConfirmed">
+        <form method="POST" action="../../deletePostConfirmedAdmin">
             <?php set_csrf() ?>
             <input type="hidden" name="WallPostIdDelete" value="<?php echo $_POST['WallPostIdDelete'];?>">           
             <h1>Are you sure you wish to delete the wallpost??</h1>

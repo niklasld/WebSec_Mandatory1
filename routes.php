@@ -41,10 +41,11 @@
     post('/postReply', '/user/posts/postReply.php');
 
     //deleteWallPost
-    //post('/deleteWallPost','/user/views/deleteWallPost');
+    //post('/deleteWallPost','/user/views/deleteWallPost');deletePostConfirmedAdmin
     post('/deletePost', '/user/views/deletePost.php');
     post('/deletePostConfirmed', '/user/posts/deletePost.php');
     post('/deletePostAdmin', '/elavatedUser/views/deletePost.php');
+    post('/deletePostConfirmedAdmin', '/elavatedUser/posts/deletePost.php');
 
     //sign out
     get('/signOut', '/user/views/signOut.php');
