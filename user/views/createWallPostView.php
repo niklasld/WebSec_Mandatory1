@@ -21,9 +21,13 @@
 
             <label>Content: </label><br>
             <textarea type="text" name="content" rows="10" cols="50" required></textarea><br>
-
+<!-- 
             <label>Image link: </label><br>
-            <input type="text" name="imgLink"><br>
+            <input type="text" name="imgLink"><br> -->
+
+            
+            <label>File(PNG or JPG):</label><br>
+            <input type="file" name="file"><br>
 
             <!-- <input type="hidden" name="createdBy" value="<?php //echo $_SESSION['userId'] ?>"> -->
 

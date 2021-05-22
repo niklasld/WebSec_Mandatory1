@@ -39,8 +39,12 @@
             echo 'Date created: '.$value['Timestamp'].' By: <i>'.$value['FirstName'].' '.$value['LastName'].'</i>';
             echo '<form action="../deletePostAdmin" method="POST"><input type="hidden" name="WallPostIdDelete" value="'.$value['WallPostId'].'"><button type="submit" class="deletePost">Delete Post</button></form>';
             
+            // if($value['FileLink'] != "") {
+            //     echo '<br><img src="'.$value['FileLink'].'" width="300" height="200"></img>';
+            // }
+
             if($value['FileLink'] != "") {
-                echo '<br><img src="'.$value['FileLink'].'" width="300" height="200"></img>';
+                echo '<br><img src="upload/'.$value['FileLink'].'" width="300" height="200"></img>';
             }
             echo '<br><p>'.$value['Content'].'</p><br>';
 
