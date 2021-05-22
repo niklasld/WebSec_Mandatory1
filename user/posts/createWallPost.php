@@ -29,6 +29,7 @@
         $file = rand(1000,100000)."-".$_FILES['file']['name'];
         $file_loc = $_FILES['file']['tmp_name'];
         $file_type = $_FILES['file']['type'];
+        $file_size = $_FILES['file']['size'];
         $folder="upload/";
 
         $new_file_name = strtolower($file);
@@ -88,9 +89,17 @@
                 
             try {
                 if($file_type == "image/png" || $file_type == "image/jpeg") {
-                    $stmt->execute();
-                    move_uploaded_file($file_loc, $folder.$final_file);
-                return true; 
+                    if($file_size<10000000) {
+                        move_uploaded_file($file_loc, $folder.$final_file);
+                        $stmt->execute();
+                        return true;
+                    }
+                    else {
+                        echo 'File to big... under 1 mb please...';
+                        header("refresh:3; url=../../createWallPost");
+                    }
+
+                //return true; 
             } else {
                 echo "Please select a valid file type - ";
             }
