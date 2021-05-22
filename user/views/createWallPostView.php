@@ -14,7 +14,7 @@
     <?php include_once($_SERVER['DOCUMENT_ROOT'].'/user/views/fragments/header.php'); ?>
     <div class="content">
         <h1>Create post</h1>
-        <form method="POST" action="../../createWallPost">
+        <form method="POST" action="../../createWallPost" enctype="multipart/form-data">
             <?php set_csrf() ?>
             <label>Header: </label><br>
             <input type="text" name="header" required><br>

@@ -76,20 +76,20 @@
         $stmt->bindParam(':FileLink', $final_file);
         $stmt->bindParam(':CreatedBy', $postData['createdBy']);
 
-        move_uploaded_file($file_loc, $folder.$final_file);
-
+        
         //var_dump($stmt);
         // try {
-        //     $stmt->execute();
-        //     return true;
-        // }
-        // catch(PDOException $e) {
-        //     return false;
-        // }
-
-        try {
-            if($file_type == "image/png" || $file_type == "image/jpeg") {
-                $stmt->execute();
+            //     $stmt->execute();
+            //     return true;
+            // }
+            // catch(PDOException $e) {
+                //     return false;
+                // }
+                
+            try {
+                if($file_type == "image/png" || $file_type == "image/jpeg") {
+                    $stmt->execute();
+                    move_uploaded_file($file_loc, $folder.$final_file);
                 return true; 
             } else {
                 echo "Please select a valid file type - ";

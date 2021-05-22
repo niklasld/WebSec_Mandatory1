@@ -58,6 +58,7 @@
                 echo $reply['Timestamp'].' <i>'.$reply['FirstName'].' '.$reply['LastName'].'</i><br>';
                 echo '<p>'.$reply['Reply'].'</p>';
             }
+            echo '<br><hr>';
         }
     }
 
