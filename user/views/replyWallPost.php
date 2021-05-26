@@ -43,7 +43,7 @@
         <h1>Create reply</h1>
         <form method="POST" action="../../postReply">
             <?php set_csrf() ?>
-            <input type="hidden" name="postId" value="<?php echo $_POST['postId'];?>">
+            <input type="hidden" name="postId" value="<?php out($_POST['postId']);?>">
 
             <label>Reply: </label><br>
             <textarea type="text" name="reply" rows="10" cols="50" required></textarea><br>

@@ -1,7 +1,7 @@
 <?php
     if(!isset($_SESSION['logInNU']) || $_SESSION['logInNU'] != TRUE) {
         //header("Location: ../../index.php"); 
-        echo $_SESSION['logInNU'];
+        out($_SESSION['logInNU']);
     }
 ?>
 
@@ -26,7 +26,7 @@
     <div class="content">
         <form method="POST" action="../../deletePostConfirmed">
             <?php set_csrf() ?>
-            <input type="hidden" name="WallPostIdDelete" value="<?php echo $_POST['WallPostIdDelete'];?>">           
+            <input type="hidden" name="WallPostIdDelete" value="<?php out($_POST['WallPostIdDelete']);?>">           
             <h1>Are you sure you wish to delete the wallpost??</h1>
 
             <!-- <input type="hidden" name="createdBy" value="<?php //echo $_SESSION['userId'] ?>"> -->

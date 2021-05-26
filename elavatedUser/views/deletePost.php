@@ -1,7 +1,7 @@
 <?php
     if(!isset($_SESSION['logInEU']) || $_SESSION['logInEU'] != TRUE) {
         header("Location: ../../adminLogin"); 
-        echo $_SESSION['logInEU'];
+        out($_SESSION['logInEU']);
     }
 ?>
 

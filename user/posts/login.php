@@ -5,7 +5,7 @@
     // }
     // echo session_status();
     // session_start();
-    echo $_SESSION['logInNU'];
+    out($_SESSION['logInNU']);
     if(!is_csrf_valid()){
         // The form is forged
         // Code here
@@ -49,7 +49,7 @@
             }
             else {
                 echo "<br>";
-                echo $validate;
+                out($validate);
                 header("refresh:3; url=../../index.php");
             }
         } 
@@ -127,7 +127,7 @@
         $attempts = $user['LoginAttempts']+1;
         $email = $user['Email'];
 
-        echo $attempts." ".$currentTime." ".$email;
+        out($attempts." ".$currentTime." ".$email);
 
         //bind paramiters
         $stmt->bindParam(':LastLogin', $currentTime);

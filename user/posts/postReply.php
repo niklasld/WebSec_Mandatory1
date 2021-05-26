@@ -70,7 +70,7 @@
             return true;
         }
         catch(PDOException $e) {
-            echo $e;
+            out($e);
             return false;
         }
     } 

@@ -2,7 +2,7 @@
 
     if(!isset($_SESSION['logInEU']) || $_SESSION['logInEU'] != TRUE) {
         //header("Location: ../../index.php"); 
-        echo $_SESSION['logInEU'];
+        out($_SESSION['logInEU']);
     }
 
 ?>

@@ -38,7 +38,7 @@
                 $this->conn->exec("set names utf8");
             }
             catch(PDOExeption $exception) {
-                echo "Connection error: ".$exception->getMessage();
+                out("Connection error: ".$exception->getMessage());
             }
 
             return $this->conn;

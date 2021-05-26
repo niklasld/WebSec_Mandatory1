@@ -2,7 +2,7 @@
 
     if(!isset($_SESSION['logInNU']) || $_SESSION['logInNU'] != TRUE) {
         //header("Location: ../../index.php"); 
-        echo $_SESSION['logInNU'];
+        out($_SESSION['logInNU']);
     }
 
     if(isset($_POST['WallPostIdDelete'])) {
