@@ -26,15 +26,20 @@
 
         $connection = $database->getConnection();
 
-        $file = rand(1000,100000)."-".$_FILES['file']['name'];
-        $file_loc = $_FILES['file']['tmp_name'];
         $file_type = $_FILES['file']['type'];
-        $file_size = $_FILES['file']['size'];
-        $folder="upload/";
-
-        $new_file_name = strtolower($file);
-
-        $final_file=str_replace(' ','-',$new_file_name);
+        if($file_type != "") {
+            $file = rand(1000,100000)."-".$_FILES['file']['name'];
+            $file_loc = $_FILES['file']['tmp_name'];
+            $file_size = $_FILES['file']['size'];
+            $folder="upload/";
+    
+            $new_file_name = strtolower($file);
+    
+            $final_file=str_replace(' ','-',$new_file_name);
+            //$final_file=$file_type;
+        } else {
+            $final_file = "";
+        }
 
         $sqlQuery = '
             INSERT INTO
@@ -86,9 +91,9 @@
             // catch(PDOException $e) {
                 //     return false;
                 // }
-                
+            
             try {
-                if($file_type == "image/png" || $file_type == "image/jpeg") {
+                if($file_type == "image/png" || $file_type == "image/jpeg" || $file_type == "") {
                     if($file_size<10000000) {
                         move_uploaded_file($file_loc, $folder.$final_file);
                         $stmt->execute();
@@ -101,6 +106,7 @@
 
                 //return true; 
             } else {
+                var_dump($file_type);
                 echo "Please select a valid file type - ";
             }
         }
