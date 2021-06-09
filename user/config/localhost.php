@@ -1,6 +1,7 @@
 <?php
     function getLocalhost() {
-        $localhost = false;
+        //options aws/freedb/localhost
+        $localhost = "aws";
 
         return $localhost;
     }

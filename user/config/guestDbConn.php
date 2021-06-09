@@ -14,7 +14,7 @@
             include_once('localhost.php');
             $localhost = getLocalhost();
 
-            if(!$localhost) {
+            if($localhost == "aws") {
                 // $this->host = "database-finalmandatory.cn5rmjtyyi6m.us-east-1.rds.amazonaws.com";
                 // $this->db_name = "socialnetworkdb";
                 // $this->username = 'admin';
@@ -23,6 +23,12 @@
                 $this->db_name = "socialnetworkdb";
                 $this->username = 'anonUser';
                 $this->password = '4rTesAlm';
+            }
+            else if($localhost == "freedb") {
+                $this->host = "sql11.freesqldatabase.com";
+                $this->db_name = "sql11418180";
+                $this->username = 'sql11418180';
+                $this->password = 'FfKL3zk9bl';
             }
             else {
                 $this->host = "localhost";
